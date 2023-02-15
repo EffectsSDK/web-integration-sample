@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Effects SDK Web - integration sample</title>
+  <meta name="description" content="Effects SDK Web - integration sample">
+
+</head>
+
+<body>
+    <video id="testVideo" controls width="720" autoplay></video>
+    <script src="https://effectssdk.com/sdk/web/tsvb-web.js"></script>
+    
+    <script>
+    
+        const sdk = new window.tsvb('{{CUSTOMER_ID}}');
+        console.log(sdk);
+        
+        let video = document.getElementById('testVideo');
+    
+        sdk.onReady = () => {
+            console.log('SDK is ready let\'s run it');
+            sdk.run();
+            sdk.setSegmentationPreset('speed');
+            sdk.setBackgroundColor(0x00ff00);
+            sdk.setBackground('color');
+            //sdk.setBlur(15);
+        }
+    
+        window.addEventListener('load', function () {
+            sdk.clear();
+            navigator.mediaDevices.getUserMedia({ video: {
+                    width: 1280,
+                    height: 720
+                } }).then(stream => {
+                //set stream to sdk
+                sdk.useStream(stream);
+                //draw sdk results to canvas
+                //sdk.toCanvas(canvas);
+                //draw sdk results to MediaStream
+                video.srcObject = sdk.getStream();
+            });
+        })
+    
+    </script>
+</body>
+</html>
