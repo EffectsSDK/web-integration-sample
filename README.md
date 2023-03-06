@@ -13,6 +13,10 @@ Add real-time AI video enhancement that makes video meeting experience more effe
 ## Demo
 [Live Demo](https://effectssdk.com/sdk/demo)
 
+For the best **quality** - disable **Frame Skipping** and use **Quality** segmentation preset
+
+For the best **performance** – enable **Frame Skipping** and use **Speed** segmentation preset
+
 ## Obtaining Effects SDK Customer ID
 Effects SDK Customer ID is required to get SDK working.
 
