@@ -20,9 +20,9 @@ For the best **performance** – enable **Frame Skipping** and use **Speed** seg
 ## Obtaining Effects SDK Customer ID
 Effects SDK Customer ID is required to get SDK working.
 
-To receive a new trial Customer ID please fill in the contact form on [effectssdk.com](https://effectssdk.com/contacts) website.
+To receive a new trial Customer ID please fill in the contact form on [effectssdk.com](https://effectssdk.com/request-trial) website.
 
-## Techical Details
+## Technical Details
 
 - CUSTOMER_ID should be provided to the SDK constructor.
 - SDK has 3 speed/quality presets (different segmentationn models).
