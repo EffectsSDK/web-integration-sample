@@ -1,6 +1,18 @@
 # Video Effects SDK - integration sample
 Add real-time AI video enhancement that makes video meeting experience more effective and comfortable to your application in a few hours. 
 
+Introducing our powerful and advanced web SDK for video communication products. With our web SDK, you can now elevate your video conferencing experience with features like background blur, virtual background, auto-framing or smart zoom, beautification, and automatic color correction.
+
+Our background blur feature helps you maintain your privacy and professionalism during video calls by blurring out the background behind you. Virtual background takes it one step further by allowing you to replace your real background with a custom image or video of your choice.
+
+With our auto-framing or smart zoom feature, you no longer have to worry about staying in frame during your video calls. Our SDK automatically adjusts the camera's field of view to keep you centered in the frame, even if you move around.
+
+Our beautification feature enhances your appearance during video calls by smoothing out skin tones, removing blemishes, and adjusting lighting to create a more polished look. This feature is perfect for those who want to boost their confidence and create a professional appearance.
+
+Finally, our automatic color correction feature adjusts the camera's color settings to improve the overall image quality, even in low-light environments or with poor quality cameras.
+
+Overall, our web SDK is the perfect solution for those looking to take their video conferencing experience to the next level. With advanced features like background blur, virtual background, auto-framing or smart zoom, beautification, and automatic color correction, you can create a professional and polished appearance during your video calls. Try our web SDK today and elevate your video conferencing experience.
+
 ## Requirements
 
 - Obtaining Effects SDK Customer ID
