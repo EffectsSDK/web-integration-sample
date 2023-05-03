@@ -47,6 +47,6 @@ To receive a new trial Customer ID please fill in the contact form on [effectssd
 - Background blur - **implemented**
 - Beautification/Touch up my appearance - **implemented**
 - Layouts - **implemented**
-- Auto framing - **in progress**
-- Auto color correction - **in progress**
+- Auto framing - **implemented**
+- Auto color correction - **implemented**
 - Color grading - **in progress**
