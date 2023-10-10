@@ -58,6 +58,6 @@ To receive a new trial Customer ID please fill in the contact form on [effectssd
 - Layouts - **implemented**
 - One basic Lower-Third - **implemented**
 - Overlays - **implemented**
-- New Lower-Thirds (5) - **in progress**
-- Color filters - **in progress**
+- New Lower-Thirds (5) - **implemented**
+- Color filters - **implemented**
 - Low-light mode - **in progress**
