@@ -12,7 +12,7 @@
 
 <body>
     <video id="testVideo" controls width="720" autoplay></video>
-    <script src="https://effectssdk.com/sdk/web/2.5.3/tsvb-web.js"></script>
+    <script src="https://effectssdk.ai/sdk/web/2.6.8/tsvb-web.js"></script>
     
     <script>
     
@@ -24,7 +24,7 @@
         sdk.onReady = () => {
             console.log('SDK is ready let\'s run it');
             sdk.run();
-            sdk.setSegmentationPreset('speed');
+            sdk.setSegmentationPreset('balanced');
             sdk.setBackgroundColor(0x00ff00);
             sdk.setBackground('color');
             //sdk.setBlur(15);
