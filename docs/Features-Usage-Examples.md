@@ -151,7 +151,7 @@ Enable LowLight correction:
 sdk.enableLowLightEffect();
 
 //change the power of effect (value from 0 to 1)
-sdk.setColorCorrectorPower(0.5);
+sdk.setLowLightEffectPower(0.5);
 ```
 
 Disable LowLight correction:
