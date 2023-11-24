@@ -143,6 +143,23 @@ Disable color correction:
 sdk.disableColorCorrector()
 ```
 
+## How to use LowLight Correction
+
+Enable LowLight correction:
+
+```
+sdk.enableLowLightEffect();
+
+//change the power of effect (value from 0 to 1)
+sdk.setColorCorrectorPower(0.5);
+```
+
+Disable LowLight correction:
+
+```
+sdk.disableLowLightEffect()
+```
+
 ## Components system
 
 Imagine an artist drawing a animation. He draws individual elements on transparent sheets, overlaying them layer by layer, to get the finished frame. We have implemented a similar concept with Components system. Component - is the frame layer, that contain the specialized element.
