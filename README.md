@@ -24,7 +24,7 @@ Explore our Chrome Extension, built upon this Web SDK. You can effortlessly test
 - Support of WebGL 1.0
 
 ## Documentation
-- [API Reference](https://effectssdk.com/sdk/web/docs/classes/tsvb.html)
+- [API Reference](https://effectssdk.ai/sdk/web/docs/classes/tsvb.html)
 - [Feature Usage](docs/Features-Usage-Examples.md)
 
 ## Demo
