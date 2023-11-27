@@ -160,6 +160,60 @@ Disable LowLight correction:
 sdk.disableLowLightEffect()
 ```
 
+## How to use ColorFilter Effect
+
+Enable ColorFilter effect:
+
+```
+sdk.enableColorFilter();
+```
+
+ColorFilter state management:
+
+```
+sdk.setColorFilterConfig(config:Partial<ColorFilterConfig>)
+```
+
+ColorFilterConfig has folowing properties (all optional):
+
+- part: number from 0 to 1 - allow to aply the effect to part of the frame (dev feature, default value is 1)
+- power: number from 0 to 1 - set effect power
+- lut: url or CUBE file - lut source, should contain valid CUBE file or url of valid CUBE file
+- capacity: number of loaded luts the effect caches (default value is 1)
+- promise: object containing one function(resolve), that can be used after lut success applying
+
+You can also pass common onSuccess callback, using following method:
+
+```
+sdk.onColorFilterSuccess(f: () => void)
+```
+
+Disable ColorFilter effect:
+
+```
+sdk.disableColorFilter()
+```
+
+Lut applying example:
+
+```
+sdk.onColorFilterSuccess(() => {
+   console.log('Lut successfully applied!'));
+})
+
+sdk.setColorFilterConfig({
+   lut: 'https://lut_storage.com/my_lut.cube'
+})
+```
+
+Set ColorFilter power:
+
+```
+sdk.setColorFilterConfig({
+   power: 0.5
+})
+```
+
 ## Components system
 
 Imagine an artist drawing a animation. He draws individual elements on transparent sheets, overlaying them layer by layer, to get the finished frame. We have implemented a similar concept with Components system. Component - is the frame layer, that contain the specialized element.
