@@ -60,4 +60,4 @@ To receive a new trial Customer ID please fill in the contact form on [effectssd
 - Overlays - **implemented**
 - New Lower-Thirds (5) - **implemented**
 - Color filters - **implemented**
-- Low-light mode - **in progress**
+- Low-light mode - **implemented**
