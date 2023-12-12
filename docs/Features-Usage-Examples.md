@@ -34,7 +34,7 @@ sdk.onChangeInputResolution(() => {
 })
 ```
 
-This method can be usefull in cases where browser changes stream videoTrack resolution in the fly (rotation the screen of mobile devices and ect.)
+This method can be usefull in cases where browser changes stream videoTrack resolution on the fly (rotation the screen of mobile devices and ect.)
 
 ## ErrorBus
 
@@ -209,7 +209,7 @@ sdk.disableLowLightEffect()
 The LowLight correction takes some time to activate. Use following method to pass callback that will be executed every time the effect is ready for use:
 
 ```
-sdk.onLowLightSuccess(() => console.log("Effect is working"))
+sdk.onLowLightSuccess(() => console.log("Effect is successfully applied"))
 ```
 
 ## How to use ColorFilter Effect
