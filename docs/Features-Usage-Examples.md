@@ -6,10 +6,9 @@
 
 ```
    sdk.onReady = () => {
-           console.log('SDK is ready let\'s run it');
-           sdk.run();
+      console.log('SDK is ready let\'s run it');
+      sdk.run();
    }
-
 ```
 
 - When you are changing the camera stream you need to do following:
@@ -19,10 +18,57 @@
    sdk.clear();
    sdk.useStream(stream);
 
-   //after that sdk.onReady ccallback will happen again
+   //after that sdk.onReady callback will happen again
 ```
 
 - SDK doesn't keep the configuration state inside, you should do it by yourself. So after the camera stream will be changed you need to restore SDK state (by configuring again as needed)
+
+## Input Resolution change event
+
+SDK has ability to subscribe to an input resolution change event.
+
+```
+sdk.onChangeInputResolution(() => {
+   console.log("The input resolution has beed changed...");
+   ...
+})
+```
+
+This method can be usefull in cases where browser changes stream videoTrack resolution in the fly (rotation the screen of mobile devices and ect.)
+
+## ErrorBus
+
+SDK contains an internal notification system - ErrorBus. You can pass onError-callback to subscribe to SDK notifications:
+
+```
+sdk.onError((errorObject) => {
+   if(errorObject.type === "error") {
+      console.error(errorObject.message);
+   } else {
+      console.log(errorObject.message)
+   }
+});
+```
+
+ErrorObject contains the following fields:
+
+- message: string value, contains message with emitter prefix (if exists);
+- type: error type - ErrorType enum (typescript case) or "info" | "warning" | "error" string (javascript);
+- data: optional field, can contain additional info;
+
+> In typescript projects you can use enum syntax:
+>
+> ```
+> import { tsvb, ErrorType } from "effects-sdk";
+>
+> const sdk = new tsvb("{CUSTOMER_ID}");
+>
+> sdk.onError((errorObject) => {
+>   if(errorObject.type === ErrorType.ERROR) {
+>    ...
+>   }
+> })
+> ```
 
 ## How to use Virtual Backgrounds
 
@@ -158,6 +204,12 @@ Disable LowLight correction:
 
 ```
 sdk.disableLowLightEffect()
+```
+
+The LowLight correction takes some time to activate. Use following method to pass callback that will be executed every time the effect is ready for use:
+
+```
+sdk.onLowLightSuccess(() => console.log("Effect is working"))
 ```
 
 ## How to use ColorFilter Effect
