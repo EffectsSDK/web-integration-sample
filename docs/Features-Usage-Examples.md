@@ -110,20 +110,44 @@ Disable beautification:
 sdk.disableBeautification();
 ```
 
+## How to change segmentation layout
+
+Use the setLayout function to set one of default presets: "center", "left-bottom", "right-bottom"
+
+```
+sdk.setLayout("left-bottom");
+```
+
+In case you need to customize layout params, use setCustomLayout() function:
+
+```
+interface CustomLayoutOptions {
+   xOffset?: number, // horizontal offset relative to center, value can be a number from -1 to 1
+   yOffset?: number, // vertical offset relative to center, value can be a number from -1 to 1
+   size?: number,    // mask size percentage, value can be a number from 0 to 1
+}
+
+sdk.setCustomLayout(options: CustomLayoutOptions)
+```
+
 ## How to use Auto-Framing
 
 Enable auto-framing (smart zoom):
 
 ```
+
 sdk.enableSmartZoom();
 //set the level of zooming
 sdk.setFaceArea(0.2);
+
 ```
 
 Disable auto-framing (smart zoom):
 
 ```
+
 sdk.disableSmartZoom();
+
 ```
 
 ## How to use Color Correction
@@ -131,15 +155,19 @@ sdk.disableSmartZoom();
 Enable color correction:
 
 ```
+
 sdk.enableColorCorrector();
 //change the power of effect
 sdk.setColorCorrectorPower(0.5);
+
 ```
 
 Disable color correction:
 
 ```
+
 sdk.disableColorCorrector()
+
 ```
 
 ## How to use LowLight Correction
@@ -147,16 +175,20 @@ sdk.disableColorCorrector()
 Enable LowLight correction:
 
 ```
+
 sdk.enableLowLightEffect();
 
 //change the power of effect (value from 0 to 1)
 sdk.setLowLightEffectPower(0.5);
+
 ```
 
 Disable LowLight correction:
 
 ```
+
 sdk.disableLowLightEffect()
+
 ```
 
 ## How to use ColorFilter Effect
@@ -164,13 +196,17 @@ sdk.disableLowLightEffect()
 Enable ColorFilter effect:
 
 ```
+
 sdk.enableColorFilter();
+
 ```
 
 ColorFilter state management:
 
 ```
+
 sdk.setColorFilterConfig(config:Partial<ColorFilterConfig>)
+
 ```
 
 ColorFilterConfig has folowing properties (all optional):
@@ -184,33 +220,41 @@ ColorFilterConfig has folowing properties (all optional):
 You can also pass common onSuccess callback, using following method:
 
 ```
+
 sdk.onColorFilterSuccess(f: () => void)
+
 ```
 
 Disable ColorFilter effect:
 
 ```
+
 sdk.disableColorFilter()
+
 ```
 
 Lut applying example:
 
 ```
+
 sdk.onColorFilterSuccess(() => {
-   console.log('Lut successfully applied!'));
+console.log('Lut successfully applied!'));
 })
 
 sdk.setColorFilterConfig({
-   lut: 'https://lut_storage.com/my_lut.cube'
+lut: 'https://lut_storage.com/my_lut.cube'
 })
+
 ```
 
 Set ColorFilter power:
 
 ```
+
 sdk.setColorFilterConfig({
-   power: 0.5
+power: 0.5
 })
+
 ```
 
 ## Components system
@@ -220,16 +264,19 @@ Imagine an artist drawing a animation. He draws individual elements on transpare
 You can create the component you need:
 
 ```
+
 const newComponent_1 = sdk.createComponent({
-   component: "stickers",
-   options: { capacity: 16, duration: 3500 },
+component: "stickers",
+options: { capacity: 16, duration: 3500 },
 })
+
 ```
 
 Available components: <i>"overlay_screen", "stickers", "lowerthird_1", "lowerthird_2", "lowerthird_3", "lowerthird_4", "lowerthird_5"</i>.
 Add the created component to the frame in the order you want with unique ID that is needed to access the component. In this case <i>newComponent_2</i> will be dysplayed on top of the <i>newComponent_1</i>
 
 ```
+
 sdk.addComponent(newComponent_2, "component_id_2");
 sdk.addComponent(newComponent_1, "component_id_1");
 ...
@@ -238,15 +285,18 @@ newComponent_1.show()
 sdk.components.component_id_1.show()
 
 sdk.components["component_id_2"].show()
+
 ```
 
 Each component has an options and methods for getting/setting them (<i>setOptions(), getOptions()</i>), <i> show()/hide()</i> methods
 and lifecycle hooks: <i>onBeforeShow, onAfterShow, onBeforeHide, onAfterHide</i>:
 
 ```
+
 component.onBeforeShow(() => {
-   console.log("I will be called before showing the component")
+console.log("I will be called before showing the component")
 })
+
 ```
 
 Below we will analyze in more detail the different types of components.
@@ -256,9 +306,10 @@ Below we will analyze in more detail the different types of components.
 To use Overlays, you need to create new component by selecting the "overlay_screen" type and add it to the list of components. Note that is this case may be useful component lifecycle hooks: for example, we can stop effects pipeline after <i>overlay</i> is shown, and run pipeline before the component is hidden:
 
 ```
+
 const overlayScreen = sdk.createComponent({
-   component: "overlay_screen",
-   options: {}
+component: "overlay_screen",
+options: {}
 });
 
 sdk.addComponent(overlayScreen, "overlay");
@@ -269,6 +320,7 @@ sdk.components.overlay.onBeforeHide(() => sdk.disablePipelineSkipping());
 ...
 
 sdk.components.overlay.show()
+
 ```
 
 ### How to use Stickers
@@ -276,45 +328,53 @@ sdk.components.overlay.show()
 To use Stikers, you need to create new component by selecting the "stickers" type and pass necessary options. Then add it to the list of components:
 
 ```
+
 const stickers = sdk.createComponent({
-   component: "stickers",
-   options: {
-      capacity: 16,
-      duration: 3500
-   },
+component: "stickers",
+options: {
+capacity: 16,
+duration: 3500
+},
 });
 
 sdk.addComponent(stickers, "my_stickers_component");
+
 ```
 
 The Sticker-component has a StickerStore, the capacity of which is set by options. It allows you to store a certain number of loaded textures that can be rendered without delay. The StickerStore is a queue, each texture that has been preempted is destroyed. You can add a texture to the StickerStore by the <i>setOptions()</i> method. Loading texture is async process. There are two ways to handle texture loading promise (for example for the loading indication): add special object <i>promise</i> to the options argument:
 
 ```
+
 sdk.components.my_stickers_component.setOptions({
-   sticker: {
-      url: 'https://my.stickers.url/sticker.mp4',
-      promise: {
-         resolve: () => console.log('success'),
-         reject: () => console.log('badluck')
-      }
-   }
+sticker: {
+url: 'https://my.stickers.url/sticker.mp4',
+promise: {
+resolve: () => console.log('success'),
+reject: () => console.log('badluck')
+}
+}
 });
+
 ```
 
 or use Stickers-component hooks <i>onLoadSucccess/onLoadError</i>:
 
 ```
+
 sdk.components.my_stickers_component.onLoadSucccess(() => {
-   console.log('success');
+console.log('success');
 });
+
 ```
 
 After that you can add loaded sticker to the frame by the setting option <i>id</i> (Note that sticker unique <i>id</i> is the <i>url</i>, taht was used for the texture loading):
 
 ```
+
 sdk.components.my_stickers_component.setOptions({
-   id: 'https://my.stickers.url/sticker.mp4'
+id: 'https://my.stickers.url/sticker.mp4'
 });
+
 ```
 
 ### How to use Lower-Thirds(LT)
@@ -322,34 +382,40 @@ sdk.components.my_stickers_component.setOptions({
 First of all, you need to create a LT component by selecting the LT type and setting the required options. After that, you need to add the created LT to the list of components:
 
 ```
+
 const lt = sdk.createComponent({ component: 'lowerthird_1', options: {
-      text: {
-         title: 'John Doe',
-         subtitle: 'Some description'
-      },
-      color: {
-         primary: 161271
-      }
-   }
+text: {
+title: 'John Doe',
+subtitle: 'Some description'
+},
+color: {
+primary: 161271
+}
+}
 });
 
 sdk.addComponent(lt, "lowerthird");
+
 ```
 
 In addition to the component methods, the LT has special <i>showLowerThird()</i> and <i>hideLowerThird()</i> methods that allow you to show/hide the component with an animation effect:
 
 ```
+
 sdk.components.lowerthird.showLowerThird();
 sdk.components.lowerthird.hideLowerThird();
+
 ```
 
 ## How to resize stream on the fly
 
 ```
+
 sdk.setOutputResolution({
-   width?: number,
-   height?: number
+width?: number,
+height?: number
 })
+
 ```
 
 ## Show metrics
@@ -357,18 +423,28 @@ sdk.setOutputResolution({
 Control the visibility of metrics:
 
 ```
+
 sdk.showFps()
 sdk.hideFps()
+
 ```
 
 Function for setting fps limit:
 
 ```
+
 sdk.setFpsLimit(limit: number)
+
 ```
 
 ## How automatically switch presets
 
 ```
+
 sdk.setSegmentationPreset(preset: "quality" | "balanced" | "speed" | "lightning")
+
+```
+
+```
+
 ```
