@@ -23,6 +23,55 @@
 
 - SDK doesn't keep the configuration state inside, you should do it by yourself. So after the camera stream will be changed you need to restore SDK state (by configuring again as needed)
 
+## Input Resolution change event
+
+SDK has ability to subscribe to an input resolution change event.
+
+```
+sdk.onChangeInputResolution(() => {
+   console.log("The input resolution has beed changed...");
+   ...
+})
+```
+
+This method can be usefull in cases where browser changes stream videoTrack resolution on the fly (rotation the screen of mobile devices and ect.)
+
+## ErrorBus
+
+SDK contains an internal notification system - ErrorBus. You can pass onError-callback to subscribe to SDK notifications:
+
+```
+sdk.onError((errorObject) => {
+   if(errorObject.type === "error") {
+      console.error(errorObject.message);
+   } else {
+      console.log(errorObject.message)
+   }
+});
+```
+
+ErrorObject contains the following fields:
+
+- message: string value, contains message with emitter prefix (if exists);
+- type: error type - ErrorType enum (typescript case) or "info" | "warning" | "error" string (javascript);
+- data: optional field, can contain additional info;
+
+In typescript projects you can use enum syntax:
+
+```
+
+import { tsvb, ErrorType } from "effects-sdk";
+
+const sdk = new tsvb("{CUSTOMER_ID}");
+
+sdk.onError((errorObject) => {
+   if(errorObject.type === ErrorType.ERROR) {
+    ...
+   }
+})
+
+```
+
 ## How to use Virtual Backgrounds
 
 Put the color on the background:
@@ -191,6 +240,14 @@ sdk.disableLowLightEffect()
 
 ```
 
+The LowLight correction takes some time to activate. Use following method to pass callback that will be executed every time the effect is ready for use:
+
+```
+
+sdk.onLowLightSuccess(() => console.log("Effect is successfully applied"))
+
+```
+
 ## How to use ColorFilter Effect
 
 Enable ColorFilter effect:
@@ -238,11 +295,11 @@ Lut applying example:
 ```
 
 sdk.onColorFilterSuccess(() => {
-console.log('Lut successfully applied!'));
+   console.log('Lut successfully applied!'));
 })
 
 sdk.setColorFilterConfig({
-lut: 'https://lut_storage.com/my_lut.cube'
+   lut: 'https://lut_storage.com/my_lut.cube'
 })
 
 ```
@@ -252,7 +309,7 @@ Set ColorFilter power:
 ```
 
 sdk.setColorFilterConfig({
-power: 0.5
+   power: 0.5
 })
 
 ```
@@ -266,8 +323,8 @@ You can create the component you need:
 ```
 
 const newComponent_1 = sdk.createComponent({
-component: "stickers",
-options: { capacity: 16, duration: 3500 },
+   component: "stickers",
+   options: { capacity: 16, duration: 3500 },
 })
 
 ```
@@ -294,7 +351,7 @@ and lifecycle hooks: <i>onBeforeShow, onAfterShow, onBeforeHide, onAfterHide</i>
 ```
 
 component.onBeforeShow(() => {
-console.log("I will be called before showing the component")
+   console.log("I will be called before showing the component")
 })
 
 ```
@@ -308,8 +365,8 @@ To use Overlays, you need to create new component by selecting the "overlay_scre
 ```
 
 const overlayScreen = sdk.createComponent({
-component: "overlay_screen",
-options: {}
+   component: "overlay_screen",
+   options: {}
 });
 
 sdk.addComponent(overlayScreen, "overlay");
@@ -330,11 +387,11 @@ To use Stikers, you need to create new component by selecting the "stickers" typ
 ```
 
 const stickers = sdk.createComponent({
-component: "stickers",
-options: {
-capacity: 16,
-duration: 3500
-},
+   component: "stickers",
+   options: {
+      capacity: 16,
+      duration: 3500
+   },
 });
 
 sdk.addComponent(stickers, "my_stickers_component");
@@ -346,13 +403,13 @@ The Sticker-component has a StickerStore, the capacity of which is set by option
 ```
 
 sdk.components.my_stickers_component.setOptions({
-sticker: {
-url: 'https://my.stickers.url/sticker.mp4',
-promise: {
-resolve: () => console.log('success'),
-reject: () => console.log('badluck')
-}
-}
+   sticker: {
+      url: 'https://my.stickers.url/sticker.mp4',
+      promise: {
+      resolve: () => console.log('success'),
+      reject: () => console.log('badluck')
+      }
+   }
 });
 
 ```
@@ -362,7 +419,7 @@ or use Stickers-component hooks <i>onLoadSucccess/onLoadError</i>:
 ```
 
 sdk.components.my_stickers_component.onLoadSucccess(() => {
-console.log('success');
+   console.log('success');
 });
 
 ```
@@ -372,7 +429,7 @@ After that you can add loaded sticker to the frame by the setting option <i>id</
 ```
 
 sdk.components.my_stickers_component.setOptions({
-id: 'https://my.stickers.url/sticker.mp4'
+   id: 'https://my.stickers.url/sticker.mp4'
 });
 
 ```
@@ -384,14 +441,14 @@ First of all, you need to create a LT component by selecting the LT type and set
 ```
 
 const lt = sdk.createComponent({ component: 'lowerthird_1', options: {
-text: {
-title: 'John Doe',
-subtitle: 'Some description'
-},
-color: {
-primary: 161271
-}
-}
+      text: {
+         title: 'John Doe',
+         subtitle: 'Some description'
+      },
+      color: {
+         primary: 161271
+      }
+   }
 });
 
 sdk.addComponent(lt, "lowerthird");
@@ -412,8 +469,8 @@ sdk.components.lowerthird.hideLowerThird();
 ```
 
 sdk.setOutputResolution({
-width?: number,
-height?: number
+  width?: number,
+  height?: number
 })
 
 ```
@@ -442,9 +499,5 @@ sdk.setFpsLimit(limit: number)
 ```
 
 sdk.setSegmentationPreset(preset: "quality" | "balanced" | "speed" | "lightning")
-
-```
-
-```
 
 ```
