@@ -75,8 +75,8 @@ Also you can specify which preset would work as default one:
 ```
 // right after the initialisation
 sdk.config({
-          preset: 'speed'
-	});
+   preset: 'speed'
+});
 
 ```
 
@@ -100,6 +100,7 @@ Enable beautification:
 
 ```
 sdk.enableBeautification();
+
 //you can chamnge the power of effects on the fly
 sdk.setBeautificationLevel(0.6);
 ```
@@ -137,6 +138,7 @@ Enable auto-framing (smart zoom):
 ```
 
 sdk.enableSmartZoom();
+
 //set the level of zooming
 sdk.setFaceArea(0.2);
 
@@ -157,6 +159,7 @@ Enable color correction:
 ```
 
 sdk.enableColorCorrector();
+
 //change the power of effect
 sdk.setColorCorrectorPower(0.5);
 
@@ -238,11 +241,11 @@ Lut applying example:
 ```
 
 sdk.onColorFilterSuccess(() => {
-console.log('Lut successfully applied!'));
+   console.log('Lut successfully applied!'));
 })
 
 sdk.setColorFilterConfig({
-lut: 'https://lut_storage.com/my_lut.cube'
+   lut: 'https://lut_storage.com/my_lut.cube'
 })
 
 ```
@@ -252,7 +255,7 @@ Set ColorFilter power:
 ```
 
 sdk.setColorFilterConfig({
-power: 0.5
+   power: 0.5
 })
 
 ```
@@ -266,8 +269,8 @@ You can create the component you need:
 ```
 
 const newComponent_1 = sdk.createComponent({
-component: "stickers",
-options: { capacity: 16, duration: 3500 },
+   component: "stickers",
+   options: { capacity: 16, duration: 3500 },
 })
 
 ```
@@ -281,6 +284,7 @@ sdk.addComponent(newComponent_2, "component_id_2");
 sdk.addComponent(newComponent_1, "component_id_1");
 ...
 newComponent_1.show()
+
 // equivalent records
 sdk.components.component_id_1.show()
 
@@ -294,7 +298,7 @@ and lifecycle hooks: <i>onBeforeShow, onAfterShow, onBeforeHide, onAfterHide</i>
 ```
 
 component.onBeforeShow(() => {
-console.log("I will be called before showing the component")
+   console.log("I will be called before showing the component")
 })
 
 ```
@@ -308,9 +312,18 @@ To use Overlays, you need to create new component by selecting the "overlay_scre
 ```
 
 const overlayScreen = sdk.createComponent({
-component: "overlay_screen",
-options: {}
+  component: "overlay_screen",
+  options: {
+    url: "some_image_or_video_url",
+
+    // optional
+    promise: {
+      resolve: () => console.log("resolved"),
+      reject: (e) => console.log("rejected: ", e),
+    },
+  },
 });
+sdk.addComponent(overlayScreen, "overlay");
 
 sdk.addComponent(overlayScreen, "overlay");
 
@@ -323,6 +336,11 @@ sdk.components.overlay.show()
 
 ```
 
+You can pass to Overlay Component following options:
+
+- url - string, contains the URL of image or video. Default Overlay Component view is white screen
+- promise - an optional object, contains two fields: "resolve" (function, called after successfull texture uploading) and "reject" (function, will be called with the "error" object as the first argument if the texture loading failed)
+
 ### How to use Stickers
 
 To use Stikers, you need to create new component by selecting the "stickers" type and pass necessary options. Then add it to the list of components:
@@ -331,10 +349,10 @@ To use Stikers, you need to create new component by selecting the "stickers" typ
 
 const stickers = sdk.createComponent({
 component: "stickers",
-options: {
-capacity: 16,
-duration: 3500
-},
+   options: {
+      capacity: 16,
+      duration: 3500
+   },
 });
 
 sdk.addComponent(stickers, "my_stickers_component");
@@ -347,12 +365,12 @@ The Sticker-component has a StickerStore, the capacity of which is set by option
 
 sdk.components.my_stickers_component.setOptions({
 sticker: {
-url: 'https://my.stickers.url/sticker.mp4',
-promise: {
-resolve: () => console.log('success'),
-reject: () => console.log('badluck')
-}
-}
+   url: 'https://my.stickers.url/sticker.mp4',
+      promise: {
+         resolve: () => console.log('success'),
+         reject: () => console.log('badluck')
+      }
+   }
 });
 
 ```
@@ -362,7 +380,7 @@ or use Stickers-component hooks <i>onLoadSucccess/onLoadError</i>:
 ```
 
 sdk.components.my_stickers_component.onLoadSucccess(() => {
-console.log('success');
+   console.log('success');
 });
 
 ```
@@ -372,7 +390,7 @@ After that you can add loaded sticker to the frame by the setting option <i>id</
 ```
 
 sdk.components.my_stickers_component.setOptions({
-id: 'https://my.stickers.url/sticker.mp4'
+   id: 'https://my.stickers.url/sticker.mp4'
 });
 
 ```
@@ -383,15 +401,27 @@ First of all, you need to create a LT component by selecting the LT type and set
 
 ```
 
-const lt = sdk.createComponent({ component: 'lowerthird_1', options: {
-text: {
-title: 'John Doe',
-subtitle: 'Some description'
-},
-color: {
-primary: 161271
-}
-}
+const lt = sdk.createComponent({
+   // available values: "lowerthird_1", "lowerthird_2", "lowerthird_3", "lowerthird_4", "lowerthird_5"
+   component: "lowerthird_1",
+
+   options: {
+      color: {
+         primary: 0xff5500,
+         secondary: 0x5100ff,
+      },
+
+      // vertical and horizontal offset (values between 0 and 0.25)
+      offset: {
+         x: 0.1,
+         y: 0.1,
+      },
+
+      text: {
+         title: "LowerThird Title",
+         subtitle: "LowerThird Subtitle",
+      },
+   },
 });
 
 sdk.addComponent(lt, "lowerthird");
@@ -412,8 +442,8 @@ sdk.components.lowerthird.hideLowerThird();
 ```
 
 sdk.setOutputResolution({
-width?: number,
-height?: number
+   width?: number,
+   height?: number
 })
 
 ```
@@ -442,9 +472,5 @@ sdk.setFpsLimit(limit: number)
 ```
 
 sdk.setSegmentationPreset(preset: "quality" | "balanced" | "speed" | "lightning")
-
-```
-
-```
 
 ```
