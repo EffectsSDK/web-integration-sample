@@ -26,9 +26,14 @@ Explore our Chrome Extension, built upon this Web SDK. You can effortlessly test
 ## Documentation
 - [API Reference](https://effectssdk.ai/sdk/web/docs/classes/tsvb.html)
 - [Feature Usage](docs/Features-Usage-Examples.md)
+- [Best Practices](docs/Best-Practices.md)
 
 ## Demo
-[Live Demo](https://effectssdk.com/sdk/demo)
+[Live Demo](https://effectssdk.ai/sdk/demo)
+
+## NPM Package
+[npm](https://www.npmjs.com/package/effects-sdk)
+
 
 For the best **quality** - disable **Frame Skipping** and use **Quality** segmentation preset
 
@@ -37,7 +42,7 @@ For the best **performance** – enable **Frame Skipping** and use **Speed** seg
 ## Obtaining Effects SDK Customer ID
 Effects SDK Customer ID is required to get SDK working.
 
-To receive a new trial Customer ID please fill in the contact form on [effectssdk.com](https://effectssdk.com/request-trial) website.
+To receive a new trial Customer ID please fill in the contact form on [effectssdk.ai](https://effectssdk.ai/request-trial) website.
 
 ## Technical Details
 
