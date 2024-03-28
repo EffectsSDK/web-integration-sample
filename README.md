@@ -34,6 +34,10 @@ Explore our Chrome Extension, built upon this Web SDK. You can effortlessly test
 ## NPM Package
 [npm](https://www.npmjs.com/package/effects-sdk)
 
+## Chrome extension for end customers
+[AI Webcam Visual Effects: Google Meet & Other](https://chromewebstore.google.com/detail/ai-webcam-visual-effects/iedbphhbpflhgpihkcceocomcdnemcbj)
+
+
 
 For the best **quality** - disable **Frame Skipping** and use **Quality** segmentation preset
 
@@ -47,7 +51,8 @@ To receive a new trial Customer ID please fill in the contact form on [effectssd
 ## Technical Details
 
 - CUSTOMER_ID should be provided to the SDK constructor.
-- SDK has 3 speed/quality presets (different segmentationn models).
+- SDK has 4 speed/quality presets (different segmentationn models).
+- Segmentation supports WebGPU provider.
 - To improve output FPS SDK has ability to skip the frames.
 - [Self Hosted Assets](docs/Self-Hosted-Assets.md)
 - [License Server for On-Premises Solutions](docs/License-Server-for-On-Premises-Solutions.md)
@@ -66,3 +71,4 @@ To receive a new trial Customer ID please fill in the contact form on [effectssd
 - New Lower-Thirds (5) - **implemented**
 - Color filters - **implemented**
 - Low-light mode - **implemented**
+- Video clarity/Sharpness - **in progress**
