@@ -71,4 +71,4 @@ To receive a new trial Customer ID please fill in the contact form on [effectssd
 - New Lower-Thirds (5) - **implemented**
 - Color filters - **implemented**
 - Low-light mode - **implemented**
-- Video clarity/Sharpness - **in progress**
+- Video clarity/Sharpness - **implemented**
