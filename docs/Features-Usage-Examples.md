@@ -317,6 +317,27 @@ sdk.setColorFilterConfig({
 
 ```
 
+## How to use Sharpness Effect
+
+Enable sharpness effect:
+
+```
+
+sdk.enableSharpnessEffect()
+
+//change the power of effect (from 0 to 1)
+sdk.setSharpnessEffectConfig({ power: 0.5 });
+
+```
+
+Disable sharpness effect:
+
+```
+
+sdk.disableSharpnessEffect()
+
+```
+
 ## Components system
 
 Imagine an artist drawing a animation. He draws individual elements on transparent sheets, overlaying them layer by layer, to get the finished frame. We have implemented a similar concept with Components system. Component - is the frame layer, that contain the specialized element.
