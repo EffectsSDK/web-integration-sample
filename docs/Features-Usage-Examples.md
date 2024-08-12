@@ -143,6 +143,36 @@ Disable blur:
 sdk.clearBlur();
 ```
 
+## How to make background transparent
+
+Enable segmentation with solid color background:
+
+```
+sdk.setBackgroundColor(0x00ff00);
+sdk.setBackground('color');
+```
+
+Set layout mode as 'transparent':
+
+```
+sdk.setLayoutMode('transparent');
+```
+
+## How to use Mirroring
+
+Enable mirroring:
+
+```
+sdk.enableMirroring();
+```
+
+Disable mirroring:
+
+```
+sdk.disableMirroring();
+```
+
+
 ## How to use Beautification
 
 Enable beautification:
@@ -172,9 +202,9 @@ In case you need to customize layout params, use setCustomLayout() function:
 
 ```
 interface CustomLayoutOptions {
-   xOffset?: number, // horizontal offset relative to center, value can be a number from -1 to 1
-   yOffset?: number, // vertical offset relative to center, value can be a number from -1 to 1
-   size?: number,    // mask size percentage, value can be a number from 0 to 1
+   xOffset?: number, // Horizontal offset relative to the left edge. The value is usually a number from 0 to 1, but it can be moved outside the edge if required.
+   yOffset?: number, // Vertical offset relative to the top edge. The value is usually a number from 0 to 1, but it can be moved outside the edge if required.
+   size?: number,    // Mask size as a percentage of the stream width. The value can be a number from 0 to 1.
 }
 
 sdk.setCustomLayout(options: CustomLayoutOptions)

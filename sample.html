@@ -12,7 +12,7 @@
 
 <body>
     <video id="testVideo" controls width="720" autoplay></video>
-    <script src="https://effectssdk.ai/sdk/web/3.2.3/tsvb-web.js"></script>
+    <script src="https://effectssdk.ai/sdk/web/3.3.0/tsvb-web.js"></script>
     
     <script>
     
@@ -25,16 +25,12 @@
             console.log('SDK is ready let\'s run it');
             sdk.run();
             sdk.setBackgroundColor(0x00ff00);
-            sdk.setBackground('color');
-            //sdk.setBlur(15);
+            sdk.setBackground('color'); //😎
         }
     
         window.addEventListener('load', function () {
             sdk.clear();
-            navigator.mediaDevices.getUserMedia({ video: {
-                    width: 1280,
-                    height: 720
-                } }).then(stream => {
+            navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
                 //set stream to sdk
                 sdk.useStream(stream);
                 //draw sdk results to canvas
