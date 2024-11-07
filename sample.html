@@ -18,6 +18,11 @@
     
         const sdk = new window.tsvb('{{CUSTOMER_ID}}');
         console.log(sdk);
+
+        //activate webgpu computation
+        sdk.config({
+            provider: "webgpu"
+        });
         
         let video = document.getElementById('testVideo');
     
