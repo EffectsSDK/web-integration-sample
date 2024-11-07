@@ -21,7 +21,8 @@ Explore our Chrome Extension, built upon this Web SDK. You can effortlessly test
 
 - Obtaining Effects SDK Customer ID
 - SSL to get MediaStream from browser
-- Support of WebGL 1.0
+- Support of WebGL 2.0
+- WebGPU support (optional)
 
 ## Documentation
 - [API Reference](https://effectssdk.ai/sdk/web/docs/classes/tsvb.html)
